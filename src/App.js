@@ -1,36 +1,26 @@
-import Button from "./Button";
-import {GoBell, GoCloudDownload, GoDatabase} from 'react-icons/go';
-
-
-const handleClick = ()=>{
-	console.log('fgjnf')
-}
+import Accordion from "./components/Accordion";
 
 const App = ()=>{
+	const items = [
+		{
+			id:'1',
+			label: 'Can I use React?',
+			content: "Of course"
+		},
+		{
+			id:'2',
+			label: 'Can I use React?',
+			content: "Of course"
+		},
+		{
+			id: '3',
+			label: 'Can I use React?',
+			content: "Of course"
+		},
+	]
+
 	return (
-		<div>
-			<div>
-				<Button primary onClick={handleClick}>
-					<GoBell/>
-					Ring ring
-				</Button>
-			</div>
-			<div>
-				<Button success rounded>
-					<GoCloudDownload/>
-					Upload
-				</Button>
-			</div>
-			<div>
-				<Button danger primary>
-					<GoDatabase/>
-					Save
-				</Button>
-			</div>
-			<div>
-				<Button></Button>
-			</div>
-		</div>
+		<Accordion/>
 	)
 }
 
