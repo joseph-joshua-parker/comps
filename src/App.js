@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import DropdownPage from './pages/DropdownPage';
 import AccordionPage from './pages/AccordionPage';
 import ButtonPage from "./pages/ButtonPage";
+import ModalPage from './pages/ModalPage';
 import Sidebar from "./components/Sidebar";
 import Route from "./components/Route";
 
@@ -21,6 +22,10 @@ const App = ()=>{
 
                 <Route path="/buttons">
                     <ButtonPage/>
+                </Route>
+
+                <Route path="/modal">
+                    <ModalPage/>
                 </Route>
             </div>
         </div>
