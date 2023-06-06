@@ -1,30 +1,30 @@
-import { useState, useEffec } from "react";
+import { useState, useEffect } from "react";
 
-import Dropdown from "./components/Dropdown.js";
-import Accordion from "./components/Accordion";
+import DropdownPage from './pages/DropdownPage';
+import AccordionPage from './pages/AccordionPage';
+import ButtonPage from "./pages/ButtonPage";
+import Sidebar from "./components/Sidebar";
+import Route from "./components/Route";
 
 const App = ()=>{
-	const [selection, setSelection] = useState(null);
+    return (
+        <div>    
+            <Sidebar/>
+            <div>
+                <Route path="/accordion">
+                    <AccordionPage/>
+                </Route>
 
-	const options = [
-		{	label:	'Blood Red',	value: 'red' },
-		{	label:	'Life Green',	value: 'green' },
-		{	label:	'Sky Blue',		value: 'blue' },
-	];
+                <Route path="/dropdown">
+                    <DropdownPage/>
+                </Route>
 
-	return <div>
-			<Dropdown 
-				options={options} 
-				value={selection}  
-				onChange={setSelection}
-			/>
-
-			<Dropdown 
-				options={options} 
-				value={selection}  
-				onChange={setSelection}
-			/>
-		</div>
+                <Route path="/buttons">
+                    <ButtonPage/>
+                </Route>
+            </div>
+        </div>
+    )
 }
 
 export default App;
