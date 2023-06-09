@@ -1,27 +1,36 @@
 import Button from "../components/Button";
 import { useState, useReducer } from "react";
 import Panel from '../components/Panel';
+import produce from 'immer';
 
 const INCREMENT_COUNT = 'increment';
 const DECREMENT_COUNT = 'decrement';
 const SET_DELTA = 'set-delta';
+const APPLY_DELTA = 'apply-delta';
 
 function CounterPage({initialCount}){
 	//const [count, setCount] = useState(initialCount);
 	//const [countDelta, setCountDelta] = useState(0);
 
-	const [state, dispatch] = (reducer, {
+	const [state, dispatch] = (produce(reducer), {
 		count: initialCount,
 		countDelta: 0
 	});
 
 	const reducer = (state, action) => {
 		switch(action.type){
-			case 'increment': return {...state, count:count+1}
-			case 'decrement': return {...state, count:count-1}
-			case 'set-delta': return {...state, countDelta: action.payload}
+			case INCREMENT_COUNT: 	state.count++; return; 
+			case DECREMENT_COUNT: 	state.count --; return;
+			case SET_DELTA: 		countDelta = action.payload; return;
+
+			case APPLY_DELTA: 		 	count = state.count+state.countDelta; 
+										countDelta = 0;
+										return;
+									
+
+			default : 				throw new Error('mistaken dispatch;'+ action.type);
 		}
-		return {...state, count: state.count+1};
+	
 	}
 	
 	const increment = () => {
@@ -40,8 +49,7 @@ function CounterPage({initialCount}){
 	};
 	const handleSubmit = (event)=>{
 		event.preventDefault();
-		//setCount(count + countDelta);
-		//setCountDelta(0);
+		dispatch({type: APPLY_DELTA})
 	}
 	
 
